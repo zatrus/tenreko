@@ -1,6 +1,6 @@
 # Spec NNN: {{Feature name}} · Design
 
-- **Status:** draft | approved (GO by {{who}} on {{date}})
+- **Status:** draft | approved (GO by {{who}} on {{date}}) | delivered (historical, spec NNN)
 - **Requirements:** ./requirements.md
 
 ## Summary

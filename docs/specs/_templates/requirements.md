@@ -1,7 +1,8 @@
 # Spec NNN: {{Feature name}} · Requirements
 
-- **Status:** draft | approved (GO by {{who}} on {{date}})
+- **Status:** draft | approved (GO by {{who}} on {{date}}) | delivered (historical, spec NNN)
 - **Owner:** {{human}}
+- **Capabilities:** {{name}} (adds / changes / retires {{PREFIX}}-n), see `docs/capabilities/`
 - **Related:** issues, ADRs, other specs
 
 ## Problem
@@ -28,6 +29,15 @@ What hurts, for whom, and how we know (evidence, tagged VERIFIED/ASSUMED). 2 to 
 |---|---|
 | REQ-1.1 | WHEN ... the system shall ... |
 | REQ-1.2 | IF ... THEN the system shall ... |
+
+<!-- Optional acceptance scenarios for multi-step or concurrent behaviour, where one EARS line is not enough.
+     Each names the REQ(s) it proves and is traced like a REQ. -->
+
+#### AC-1.1: {{scenario name}} (REQ-1.1)
+Given {{state}}
+When {{action, e.g. two distinct users book the last place at the same time}}
+Then {{observable outcome, e.g. exactly one booking succeeds}}
+And {{the other gets a "class full" response}}
 
 ### US-2: ...
 
@@ -68,5 +78,7 @@ What hurts, for whom, and how we know (evidence, tagged VERIFIED/ASSUMED). 2 to 
      a question that blocks design is open. -->
 - [ ] Q1: ...
 
-## Glossary
-- **Term:** definition used consistently in code and docs.
+## New terms
+<!-- Terms this spec introduces or redefines. At the GO they are added to the terminology table in
+     docs/BUSINESS.md, which is the single glossary. Existing terms are used as defined there. -->
+- **Term:** definition

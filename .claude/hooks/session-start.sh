@@ -22,6 +22,9 @@ if [[ -f docs/state/inbox.md ]]; then
   grep -E "$open_re" docs/state/inbox.md 2>/dev/null | grep 'NEEDS OWNER' | head -5 | sed 's/^/  - /'
 fi
 
+left=$(grep -l '{{' CLAUDE.md README.md docs/BUSINESS.md docs/state/NOW.md 2>/dev/null | tr '\n' ' ')
+[[ -n "$left" ]] && echo "- WARNING: unfilled {{placeholders}} in: $left(run /project-init, or fill them)"
+
 if [[ -f docs/state/NOW.md ]]; then
   lines=$(wc -l < docs/state/NOW.md | tr -d ' ')
   (( lines > 40 )) && echo "- WARNING: NOW.md has $lines lines (max 40). Trim it at the next /wrap-up."

@@ -12,6 +12,12 @@
 Principles that override everything else: @docs/constitution.md
 Current state (rewritten at the end of each session): @docs/state/NOW.md
 
+Where things live (read on demand, not at startup):
+- Business context, users, policies, terminology: `docs/BUSINESS.md`
+- **Current behaviour**, one file per capability: `docs/capabilities/`
+- Change records (requirements → design → tasks): `docs/specs/NNN-slug/`
+- Decisions: `docs/adr/` · Human contribution rules: `CONTRIBUTING.md`
+
 ## Roles
 
 - **Human = decision-maker.** Nothing moves past a gate (requirements → design → tasks → merge) without an explicit `GO`.
@@ -22,7 +28,7 @@ Current state (rewritten at the end of each session): @docs/state/NOW.md
   - `implementer` (Sonnet): writes code for one task from `tasks.md`
   - `reviewer` (Sonnet): fresh-context review against the spec
   - `reasoner` (Opus): hard root-cause analysis and design trade-offs
-- End every report with one line: `Delegated: <what> → <agent>` (or `Delegated: none`).
+- Every completion report uses the format in *Reporting* below and ends with `Delegated: <what> → <agent>` (or `Delegated: none`).
 
 ## Workflow: spec-driven development
 
@@ -40,10 +46,10 @@ Full spec flow (one folder per feature: `docs/specs/NNN-slug/`):
 2. `/spec-design` → `design.md` (architecture, contracts, data, test strategy). **STOP for GO.**
 3. `/spec-tasks` → `tasks.md` (small, ordered, test-first tasks). **STOP for GO.**
 4. `/spec-implement` → one task at a time: red → green → refactor → gate → commit.
-5. `/spec-verify` → traceability (every REQ has a passing test) + independent review → push branch, open PR. **STOP: the human squash-merges.**
+5. `/spec-verify` → traceability (every REQ has a passing test) + capability files updated + independent review → push branch, open PR. **STOP: the human squash-merges.**
 6. `/wrap-up` → update `docs/state/NOW.md`, archive finished items, update `docs/facts/`.
 
-The spec is the source of truth. If the code needs to differ from the spec, **update the spec first**, then the code.
+`docs/capabilities/` says how the system behaves **now**; a spec folder records one change and becomes history once delivered. If the code needs to differ from the spec, **update the spec first**, then the code.
 
 ## Quality gate
 
@@ -58,16 +64,31 @@ The task is not done until the gate is green **and** you have pasted the relevan
 
 ## Hard rules (short list; details in .claude/rules/)
 
-1. **Verified facts only.** Tag claims `VERIFIED` (you ran it / read it) or `ASSUMED`. Never invent APIs, versions, numbers, or test results.
+1. **Verified facts only.** Tag claims `VERIFIED` (you ran it / read it) or `ASSUMED`. Never invent APIs, versions, numbers, or test results. Business facts (prices, policies, targets, legal duties) come only from `docs/BUSINESS.md` or the human.
 2. **Stay in scope.** Every changed line traces to the current task. Note unrelated issues in NOW.md; don't fix them.
 3. **Tests are the contract.** New behaviour → new test first. Bug → reproducing test first.
 4. **Never weaken a check to get green.** No skipped tests, `@Disabled`, `# type: ignore`, `eslint-disable`, lowered coverage, or deleted assertions without an explicit human `GO`.
 5. **No secrets** in code, logs, specs, or commits. Use env vars and `.env.example`.
 6. **Don't hand-edit** lockfiles, generated code, or migrations that already ran. Regenerate or add a new migration.
-7. **Ask, don't guess,** when a requirement is ambiguous. Put the question in the spec under *Open questions*.
+7. **Ask, don't guess,** when a requirement is ambiguous. Put the question in the spec under *Open questions*. When code, capability files, and specs **disagree**, name the conflict (paths) and ask. Neither side silently wins.
 8. **Conventional commits**, one task per commit on the feature branch (tiny tasks may share one), referencing the spec: `feat(auth): add login rate limit [spec 003 T4]`. PRs are squash-merged, so `main` gets one commit per spec.
 9. **Branches and merging:** push only to branches you created (the hook enforces it). Never merge into `main` and never run `gh pr merge`; only the human merges. Nothing else public (release, publish, tags, external message) without human `GO`.
 10. **Numbers come from tools.** Coverage, timings, sizes, and counts are copied from command output, never estimated.
+
+## Reporting
+
+Report outcomes and evidence, not plans. Persist decisions in files, not in chat. Style and how to cite IDs: `.claude/rules/communication.md`.
+
+```
+Done: <task IDs and the resulting behaviour>
+Verification:
+- Passed: <checks actually run, summary copied from output>
+- Failed: <remaining failures, or none>
+- Not run: <relevant checks not run, and why, or none>
+Open issues: <blockers, conflicts, consequential assumptions, or none>
+Documents updated: <paths, or none>
+Delegated: <what> → <agent>, or none
+```
 
 ## Context and budget
 

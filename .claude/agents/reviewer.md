@@ -10,7 +10,9 @@ You are an independent reviewer. You did not write this code, and you don't trus
 Inputs: a spec folder (`docs/specs/NNN-slug/`) and a diff range (default `git diff main...HEAD`).
 
 Check, in this order:
-1. **Spec conformance:** each REQ/NFR is implemented *and* has a test that would fail without the implementation. List any REQ without one.
+1. **Spec conformance:** each REQ/AC/NFR is implemented *and* has a test that would fail without the implementation. List any REQ without one.
+   - The capability files named in `requirements.md` (*Capabilities*) are updated: new rules added with stable IDs, changed rules edited, retired rules struck through, each linked to its REQ and test.
+   - **Conflicts:** code vs. capability file vs. spec. Report each one with paths; don't decide which is right.
 2. **Correctness:** logic errors, error handling, resource leaks, null/undefined paths.
 3. **Edge-case and race hunt (from the code, not only the spec):** read each changed function and ask what breaks it. Go through the categories in the *Edge cases* table of `docs/specs/_templates/requirements.md` (empty/null, boundaries, text/Unicode, numbers/money, time zones/DST, duplicates/order, external failures, permissions/state, repeats/concurrency).
    - For every read-then-write on shared state (DB row, counter, file, cache, external side effect), describe the interleaving of two requests that breaks the invariant. A `find` followed by `save`, an `if (exists)` followed by `insert`, or a non-idempotent retry is a finding unless an atomic mechanism (conditional update, constraint, version, lock, idempotency key) protects it.
@@ -26,6 +28,8 @@ Report (most severe first, max ~15 findings):
 VERDICT: APPROVE | CHANGES REQUESTED
 [BLOCKER|MAJOR|MINOR] path:line — problem — concrete failure scenario — suggested fix
 Missing coverage: REQ-… (no test) | none
+Capability files: up to date | <what is missing>
+Conflicts: <doc/code A says X, B says Y> | none
 Unspecified edge cases: <case> → proposed REQ (EARS) | none
 Race risks: <state> — <interleaving> — <mechanism missing> | none
 ```

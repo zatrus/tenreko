@@ -29,18 +29,20 @@ Small changes don't need the full flow. See *Workflow* in `CLAUDE.md` for the tr
 ## What's inside
 
 ```
-CLAUDE.md                     lean always-loaded rules (workflow, gate, 10 hard rules, budget)
+CLAUDE.md                     lean always-loaded rules (workflow, gate, 10 hard rules, reporting, budget)
 AGENTS.md                     same rules for other vendors' agents (Codex/Gemini cross-review)
+CONTRIBUTING.md               one page for human contributors, definition of done
 .claude/
   settings.json               permissions (allow / ask / deny) and hooks
   rules/                      path-scoped rules, loaded only when matching files are touched
     coding.md testing.md security.md git.md          always
+    communication.md                                 always: response style, plain English, IDs explained
     specs.md                                         docs/specs/**, docs/adr/**
     node.md python.md java.md spring-boot.md         per stack (unused ones are deleted at init)
   agents/                     subagents with fixed models
     explorer (haiku) · test-runner (haiku) · implementer (sonnet) · reviewer (sonnet) · reasoner (opus)
   skills/
-    project-init/             /project-init + verified scaffolds in assets/<stack>/
+    project-init/             /project-init + verified scaffolds in assets/<stack>/ + README.project.md
     spec-new/ spec-design/ spec-tasks/ spec-implement/ spec-verify/
     edge-cases/               /edge-cases checklist + verified concurrency patterns (references/concurrency.md)
     bugfix/ adr/ wrap-up/ karpathy-guidelines/
@@ -54,7 +56,10 @@ scripts/check.sh              THE quality gate, same locally, in Claude, and in 
 .github/workflows/ci.yml      runs scripts/check.sh plus a dependency audit
 docs/
   constitution.md             non-negotiable engineering principles (checked in every design)
-  specs/_templates/           requirements.md (EARS) · design.md · tasks.md
+  BUSINESS.md                 users, payers, journeys, scope, policies, the single glossary (CONFIRMED vs assumption)
+  capabilities/               CURRENT behaviour, one living file per capability, stable rule IDs (CHECKOUT-3)
+  specs/NNN-slug/             change records: requirements.md (EARS + AC scenarios) · design.md · tasks.md
+  specs/_templates/           templates for the three files above
   adr/0000-template.md        architecture decision records
   state/NOW.md                ≤ 40-line current state, rewritten by /wrap-up, imported by CLAUDE.md
   state/archive.md            one line per finished item (not loaded at startup)
@@ -74,6 +79,8 @@ Each `assets/<stack>/` passed its own gate as shipped (format + lint + types + t
 | spring-boot | Same Gradle setup + Spring Boot 4.1.2 (webmvc, validation, actuator, ProblemDetail, ECS logs), slice tests (`@WebMvcTest` + `MockMvcTester`), `*IT` full-context tests in `src/integrationTest`; JPA/Flyway/Testcontainers ready to uncomment | `./gradlew check` |
 
 TypeScript is pinned to 6.0 because typescript-eslint 8.72 supports `<6.1`. Move to TS 7 once typescript-eslint does.
+
+After `/project-init`, this README is replaced by a README for your project (`assets/README.project.md`). The template's rationale stays in `docs/WORKFLOW.md`.
 
 ## Customise
 

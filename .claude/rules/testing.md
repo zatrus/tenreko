@@ -3,7 +3,7 @@
 - **Red → green → refactor.** Write the test, run it, and *see it fail for the right reason* before implementing.
 - **One behaviour per test.** Name it after the behaviour: `should_return_404_when_order_missing` / `returns 404 when order is missing`.
 - **Arrange / Act / Assert** blocks, visibly separated. No logic (loops, ifs) in tests.
-- **Trace to the spec.** Put the REQ ID in the test name or a one-line comment: `// REQ-1.2`.
+- **Trace to the spec.** Put the REQ or AC ID in the test name or a one-line comment: `// REQ-1.2`, `// AC-2.1`.
 - **Test pyramid:** many fast unit tests on the pure core; fewer integration tests on adapters (real DB via Testcontainers or an in-memory equivalent, real HTTP layer); very few e2e tests.
 - **Don't mock what you don't own.** Wrap third-party clients in a thin adapter and fake the adapter. Prefer fakes over mocks for domain collaborators.
 - **Deterministic:** no real clock, network, random seeds, or test-order dependence. Inject a clock and seed.

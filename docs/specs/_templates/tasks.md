@@ -1,8 +1,9 @@
 # Spec NNN: {{Feature name}} · Tasks
 
-- **Status:** draft | approved (GO by {{who}} on {{date}})
+- **Status:** draft | approved (GO by {{who}} on {{date}}) | delivered (historical, spec NNN)
 - **Design:** ./design.md
 - **Branch:** `feat/NNN-slug`
+- **Capability files to update in /spec-verify:** `docs/capabilities/{{name}}.md`
 
 <!-- Rules for tasks:
      - Each task = one commit on the feature branch that leaves the gate green. Aim for < ~150 changed lines.
@@ -26,8 +27,8 @@
   - Verify: ...
 
 ## Traceability
-<!-- Filled by /spec-verify. Every REQ and NFR must have a row. -->
-| REQ / NFR | Task(s) | Test(s) | Status |
+<!-- Filled by /spec-verify. Every REQ, AC, and NFR must have a row. -->
+| REQ / AC / NFR | Task(s) | Test(s) | Status |
 |---|---|---|---|
 
 ## Implementation notes

@@ -15,7 +15,7 @@ Spec: **$ARGUMENTS** (if empty, use the active spec named in `docs/state/NOW.md`
 
 ## Steps
 
-1. **Gather VERIFIED context.** Send `explorer` to map the modules, patterns, and conventions this feature touches (entry points, similar features, error handling style, test setup). Don't read the whole codebase yourself.
+1. **Gather VERIFIED context.** Start from the capability files the spec names (current behaviour and invariants) and the ADRs they link. Old `design.md` files are history, not the current architecture. Send `explorer` to map the modules, patterns, and conventions this feature touches (entry points, similar features, error handling style, test setup). Don't read the whole codebase yourself.
 2. **Hard trade-offs?** If there are two or more credible approaches with real consequences, ask `reasoner` for a comparison. Record the result under *Alternatives considered*. Hard-to-reverse choices also get an ADR draft in `docs/adr/`.
 3. **Write `design.md`** from `docs/specs/_templates/design.md`:
    - Reuse existing patterns found in step 1. Cite real paths; mark new files *(new)*.

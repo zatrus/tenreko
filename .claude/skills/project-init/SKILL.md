@@ -40,14 +40,17 @@ Then `grep -ri "com.example\|\"app\"\|src/app" .` (excluding `.claude/`) must fi
 | java | `./gradlew build` | `./gradlew run` (add the `application` plugin when needed) | `./gradlew test --tests "com.acme.XTest.method"` |
 | spring-boot | `./gradlew build` | `./gradlew bootRun --args='--spring.profiles.active=local'` | `./gradlew test --tests "com.acme.XTest.method"` |
 
+- **README:** replace the template's `README.md` (it describes the template, not the project) with `assets/README.project.md`. Fill in name, description, status (`Prototype` unless told otherwise), prerequisites from step 1, the commands from the table above, and the build command (`npm run build`, `uv build`, or `./gradlew build`). The template's own explanation stays in `docs/WORKFLOW.md`. Don't copy `README.project.md` itself.
+- **Business context:** fill `docs/BUSINESS.md` with the human. Ask in one message: purpose, user groups (and who pays, if different), 2 or 3 core journeys, what's out of scope, any known policies or success measures. Mark each answer CONFIRMED. Anything not answered becomes `not decided` under *Assumptions and open questions*. Never invent prices, policies, targets, or legal duties.
 - Python: generate the lockfile with `uv lock` (the hook blocks hand-edits; `uv` writes it).
 - Node: `npm install` creates `package-lock.json`.
 
 ## 5. Prove it
 1. `bash scripts/check.sh --fix`, then `bash scripts/check.sh`. Must end with `GATE GREEN`. Paste the summary lines.
-2. `git init` (if needed) → `git add -A` → `git commit -m "chore: bootstrap <stack> project from template"`. This initial commit is the one place `git add -A` is fine (after checking `git status` for anything unexpected), and the only commit allowed directly on `main`. Don't push it: the human creates the remote and pushes `main`.
-3. Fill `docs/constitution.md` → *Project-specific additions* with the human (or delete the placeholder line).
-4. Rewrite `docs/state/NOW.md`: next step = `/spec-new <first feature>`.
+2. Fill `docs/constitution.md` → *Project-specific additions* with the human (or delete the placeholder line).
+3. Rewrite `docs/state/NOW.md`: next step = `/spec-new <first feature>`.
+4. **No leftover placeholders:** `grep -rn "{{" --include="*.md" . | grep -v -e "^./.claude/" -e "_templates/" -e "_template.md" -e "0000-template.md" -e "WORKFLOW.md"` must find nothing. Fill each hit, or delete the line if it doesn't apply. (The session-start hook warns about leftovers in `CLAUDE.md`, `README.md`, `BUSINESS.md`, and `NOW.md`.)
+5. `git init` (if needed) → `git add -A` → `git commit -m "chore: bootstrap <stack> project from template"`. This initial commit is the one place `git add -A` is fine (after checking `git status` for anything unexpected), and the only commit allowed directly on `main`. Don't push it: the human creates the remote and pushes `main`.
 
 The example code (`greeting`/`Greeter`) shows the conventions. Tell the human it can be deleted, together with its tests, in the first real feature's task list.
 
@@ -56,6 +59,8 @@ The example code (`greeting`/`Greeter`) shows the conventions. Tell the human it
 Initialized: <stack> · <name> · <package>
 Gate: GREEN — <copied test/coverage summary>
 Removed rules: …   Kept CI job: …
+README: project README written · BUSINESS.md: n CONFIRMED, m not decided
+Placeholders left: none
 Next: /spec-new <idea>
 Delegated: …
 ```

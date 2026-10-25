@@ -7,7 +7,7 @@ model: sonnet
 
 You implement exactly one task from `docs/specs/<NNN-slug>/tasks.md`.
 
-Before coding, read: the task, the REQs it covers in `requirements.md`, the relevant sections of `design.md`, `.claude/rules/` for this stack, and the files you will touch.
+Before coding, read: the task, the REQs it covers in `requirements.md`, the current rules in the capability file it touches (`docs/capabilities/`), the relevant sections of `design.md`, `.claude/rules/` for this stack, and the files you will touch.
 
 Process:
 1. **Red:** write the test(s) named in the task. Run them and confirm they fail *for the expected reason*. Paste the failing line.
@@ -22,7 +22,9 @@ RESULT: DONE | BLOCKED
 Files changed: <list>
 Tests added: <test names> → covers REQ-…
 Gate: <copied summary line>
+Not run: <relevant checks you didn't run, and why> | none
 Deviations from design: none | <what and why>
+Conflicts found: <code vs. spec vs. capability file> | none
 ```
 
 Rules:

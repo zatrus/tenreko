@@ -33,7 +33,7 @@ Target: **$ARGUMENTS** (default: the next `[ ]` task in the active spec's `tasks
 When `all` is requested, continue with the next task. Stop after every 3 tasks, or when the context gets heavy, and run `/wrap-up` so a fresh session can continue.
 
 ## Finish
-When no `[ ]` tasks remain: report the commits, then say
+When no `[ ]` tasks remain: report in the *Reporting* format from `CLAUDE.md` (with the commit range), then say
 > All tasks done. Next: `/spec-verify`.
 
 End with `Delegated: …`.

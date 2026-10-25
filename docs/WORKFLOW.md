@@ -14,7 +14,7 @@ flowchart LR
   des -- GO --> tasks["/spec-tasks<br/>tasks.md"]
   tasks -- GO --> impl["/spec-implement<br/>red → green → refactor<br/>gate → commit per task"]
   impl --> ver["/spec-verify<br/>traceability + fresh review<br/>push own branch, open PR"]
-  ver -- human squash-merges --> done([merged → facts/releases.md])
+  ver -- human squash-merges --> done([merged: capabilities/ current,<br/>spec folder = history])
   done --> wrap["/wrap-up → NOW.md"]
 ```
 
@@ -58,6 +58,13 @@ Run each phase in a **fresh session**. The files carry the state, and the contex
 | **Edge-case checklist** in every spec: each category is a REQ or "N/A: reason"; the human adds cases at the GO; a reviewer who did not write the code hunts for missed cases in the code | Boundary-value analysis / equivalence partitioning; "what did I miss?" review | requirements template, `/edge-cases`, `reviewer` |
 | **Invariants enforced in the datastore** (conditional update, constraint, version, lock, idempotency key), each proven by a parallel test on the real DB that fails against the naive version | Constitution article 11; classic lost-update / double-spend bugs | design template *Concurrency and consistency*, `references/concurrency.md` |
 | **Property-based tests** for input-shaped logic | QuickCheck family (fast-check, Hypothesis, jqwik) | `testing.md`, stack rules |
+| **Current specs vs change records**: `docs/capabilities/` describe behaviour *now* (stable rule IDs); `docs/specs/NNN` folders become history once delivered; `/spec-verify` folds REQs into capabilities before the PR | OpenSpec (capability specs + changes), SDD template guide | `docs/capabilities/`, `/spec-verify` step 4 |
+| **Business context** in one file, CONFIRMED vs assumption, single glossary; the agent never invents prices or policies | SDD template guide (BUSINESS.md) | `docs/BUSINESS.md`, hard rule 1, `/spec-new` |
+| **Surface conflicts** between code, capability files, and specs; never resolve them silently | SDD template guide | hard rule 7, `reviewer`, `AGENTS.md` |
+| **Completion report** with Passed / Failed / **Not run** / Open issues / Documents updated | SDD template guide | *Reporting* in `CLAUDE.md` |
+| **MUST / SHOULD / MAY** and optional Given/When/Then **AC scenarios** next to EARS | RFC 2119, BDD | `specs.md`, requirements template |
+| **Project README + CONTRIBUTING.md** written at init; leftover `{{placeholders}}` caught | SDD template guide | `/project-init`, session-start hook |
+| **Plain, literal responses**: Simplified Technical English, result first, every ID explained in words | ASD-STE100, accessibility practice | `.claude/rules/communication.md` |
 | **Test-first** for features, reproduce-first for bugs | TDD | `testing.md`, `implementer`, `/bugfix` |
 | **One deterministic gate** (`scripts/check.sh`), same in CI | "Make the right thing the easy thing" | `scripts/check.sh`, `ci.yml` |
 | **Hooks enforce; rules advise**: format on edit, block secrets/lockfiles/force-push/`--no-verify` | Claude Code best practice: deterministic over probabilistic | `.claude/hooks/`, `settings.json` |
