@@ -1,0 +1,5 @@
+# Test profile overrides (used by *IT tests via @ActiveProfiles("test"))
+logging:
+  structured:
+    format:
+      console: ""

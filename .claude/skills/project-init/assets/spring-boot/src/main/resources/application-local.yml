@@ -1,0 +1,7 @@
+# Developer machine overrides: ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+logging:
+  structured:
+    format:
+      console: ""
+  level:
+    com.example.app: debug

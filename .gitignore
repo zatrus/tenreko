@@ -1,0 +1,17 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Claude Code: personal settings stay local; shared settings (.claude/settings.json) are committed
+.claude/settings.local.json
+CLAUDE.local.md
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Stack-specific entries are appended by /project-init

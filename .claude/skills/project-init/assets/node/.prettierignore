@@ -1,0 +1,7 @@
+# Prettier formats code and config. Markdown (specs, docs, Claude rules) is left as written.
+*.md
+.claude/
+dist/
+coverage/
+node_modules/
+package-lock.json
