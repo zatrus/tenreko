@@ -39,6 +39,7 @@ Every change is triaged first:
 | **Trivial** | typo, rename, config value, ≤ ~20 lines, no behaviour change | fix → gate → commit |
 | **Bug** | behaviour is wrong vs. an existing spec | `/bugfix`: failing test first → fix → gate |
 | **Feature** | new behaviour, API, data model, or anything you are unsure about | full spec flow below |
+| **Existing code, no specs** | adopting the template for a codebase that already exists | `/spec-extract <path>`: map → one capability per run → business → ADRs |
 
 Full spec flow (one folder per feature: `docs/specs/NNN-slug/`):
 

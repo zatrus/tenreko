@@ -18,7 +18,7 @@ Spec: **$ARGUMENTS** (default: active spec).
    Any REQ without a test → status ❌. That's a blocker: add a task, and go back to `/spec-implement`.
    NFRs that can't be tested automatically get a recorded manual check with evidence (command and output).
 4. **Update current behaviour** (before the review, so the reviewer checks it): for each capability in the spec's *Capabilities* line, edit `docs/capabilities/<name>.md` (new file from `_template.md` if needed):
-   - add each new REQ as a rule with the next free stable ID (`CHECKOUT-7`), its source (`spec NNN REQ-1.2`), and test name(s)
+   - add each new REQ as a rule with the next free stable ID (`CHECKOUT-7`), its source (`spec NNN REQ-1.2`), the code location (`path:line`), and test name(s)
    - edit changed rules in place and update *Since*; strike retired rules through, with the spec that retired them
    - update *Invariants and concurrency*, *Contracts*, *Decisions*, *History*, and the index in `docs/capabilities/README.md`
    - if the code turns out to differ from an existing rule that this spec didn't touch, don't fix either side: list it as a conflict in the report

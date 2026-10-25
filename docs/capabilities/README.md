@@ -6,7 +6,7 @@ One file per capability (`checkout.md`, `user-accounts.md`), describing **what t
 |---|---|---|
 | Answers | How does it behave **now**? | What did **one change** add or alter, and how was it built? |
 | Lifetime | Living: kept current with every merged change | Historical once delivered: never edited again |
-| Updated by | `/spec-verify` (before the PR), `/bugfix` when it restores or clarifies a rule | `/spec-new`, `/spec-design`, `/spec-tasks` |
+| Updated by | `/spec-verify` (before the PR), `/bugfix` when it restores or clarifies a rule, `/spec-extract` for existing code | `/spec-new`, `/spec-design`, `/spec-tasks` |
 
 Rules:
 - A change spec names the capabilities it touches (*Capabilities* line in `requirements.md`). `/spec-verify` folds its approved REQs into those files before opening the PR, so the PR merges code and current behaviour together.

@@ -12,7 +12,7 @@ Arguments: **$ARGUMENTS**. Expected: `<stack> <project-name> [package]`. If any 
 Scaffolds live next to this file in `assets/<stack>/`. They are verified to pass their gate as shipped. Don't "improve" them during init.
 
 ## 1. Preconditions
-- The repo root has no `package.json`, `pyproject.toml`, or `build.gradle.kts` yet. If one exists, stop and ask. This skill is for new projects; for an existing codebase, keep its build and only adopt `CLAUDE.md`, `.claude/`, `docs/` and `scripts/check.sh` (then adapt `scripts/check.sh`).
+- The repo root has no `package.json`, `pyproject.toml`, or `build.gradle.kts` yet. If one exists, stop and ask. This skill is for new projects; for an existing codebase, keep its build and only adopt `CLAUDE.md`, `.claude/`, `docs/` and `scripts/check.sh` (then adapt `scripts/check.sh`), and document the existing behaviour with `/spec-extract . map`.
 - Toolchain present? Check, and report what's missing with install hints. Don't install it globally yourself:
   - node: `node --version` (≥ 24), `npm --version`
   - python: `uv --version` (install: https://docs.astral.sh/uv/)

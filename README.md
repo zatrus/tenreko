@@ -24,6 +24,8 @@ claude
 > /wrap-up          # end of every session
 ```
 
+**Existing codebase?** Copy the template next to it (or into it), then run `/spec-extract <source path>` instead of `/project-init`. It maps the capabilities, waits for your GO, then writes one capability file per run.
+
 Small changes don't need the full flow. See *Workflow* in `CLAUDE.md` for the trivial / bug / feature triage.
 
 ## What's inside
@@ -44,6 +46,7 @@ CONTRIBUTING.md               one page for human contributors, definition of don
   skills/
     project-init/             /project-init + verified scaffolds in assets/<stack>/ + README.project.md
     spec-new/ spec-design/ spec-tasks/ spec-implement/ spec-verify/
+    spec-extract/             /spec-extract: document an existing codebase (read-only) as capabilities, BUSINESS.md, ADRs
     edge-cases/               /edge-cases checklist + verified concurrency patterns (references/concurrency.md)
     bugfix/ adr/ wrap-up/ karpathy-guidelines/
   hooks/

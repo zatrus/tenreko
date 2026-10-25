@@ -65,6 +65,7 @@ Run each phase in a **fresh session**. The files carry the state, and the contex
 | **MUST / SHOULD / MAY** and optional Given/When/Then **AC scenarios** next to EARS | RFC 2119, BDD | `specs.md`, requirements template |
 | **Project README + CONTRIBUTING.md** written at init; leftover `{{placeholders}}` caught | SDD template guide | `/project-init`, session-start hook |
 | **Plain, literal responses**: Simplified Technical English, result first, every ID explained in words | ASD-STE100, accessibility practice | `.claude/rules/communication.md` |
+| **Spec extraction** from existing code: read-only source, one capability per run, every rule with `path:line` evidence and test status, business context only as ASSUMPTION, recovered ADRs, characterisation tests for untested rules | Legacy-code practice (characterisation tests), OpenSpec brownfield adoption | `/spec-extract` |
 | **Test-first** for features, reproduce-first for bugs | TDD | `testing.md`, `implementer`, `/bugfix` |
 | **One deterministic gate** (`scripts/check.sh`), same in CI | "Make the right thing the easy thing" | `scripts/check.sh`, `ci.yml` |
 | **Hooks enforce; rules advise**: format on edit, block secrets/lockfiles/force-push/`--no-verify` | Claude Code best practice: deterministic over probabilistic | `.claude/hooks/`, `settings.json` |
