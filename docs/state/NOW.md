@@ -6,14 +6,15 @@
 _Updated: 2026-10-25 · Branch: docs/extract-reservations · Active spec: none_
 
 ## In progress
-- `/spec-extract` of `D:\projects\reservations`: phase `map` done, 14 capabilities in [the capability index](../capabilities/README.md).
+- `/spec-extract` of `D:\projects\reservations`: phase `map` done and approved (GO by human on 2026-10-25), 14 capabilities in [the capability index](../capabilities/README.md).
   - Stack: Python 3.14 + FastAPI + SQLAlchemy 2 async + Alembic on PostgreSQL (two backends: `binturo-organizers`, `binturo-platform`). React 19 + Vite frontends. Stripe for payments.
 
 ## Waiting on others
 - 
 
 ## Needs my decision (human)
-- GO on the capability map (merge, split, rename, or drop rows).
+- Whether docs-only commits are allowed while `scripts/check.sh` cannot run (no stack yet, `/project-init` not done).
 
 ## Next steps
-1. After GO: `/spec-extract D:\projects\reservations <capability>`, one capability per run.
+1. `/spec-extract D:\projects\reservations enrollments` (ENROLL, smallest core capability), in a fresh session.
+2. Then one capability per run, in the order of the index.
