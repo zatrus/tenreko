@@ -11,17 +11,23 @@ Inputs: a spec folder (`docs/specs/NNN-slug/`) and a diff range (default `git di
 
 Check, in this order:
 1. **Spec conformance:** each REQ/NFR is implemented *and* has a test that would fail without the implementation. List any REQ without one.
-2. **Correctness:** logic errors, edge cases from requirements.md, error handling, concurrency, resource leaks, null/undefined paths.
-3. **Contracts:** public API/data model match design.md exactly (names, types, status codes, errors).
-4. **Security:** input validation, injection, authZ, secrets, and logging of sensitive data.
-5. **Rules:** violations of `.claude/rules/*` and `docs/constitution.md`, especially weakened checks or scope creep (changes no task asked for).
-6. **Tests quality:** assertions that check behaviour (not implementation), determinism, and meaningful names.
+2. **Correctness:** logic errors, error handling, resource leaks, null/undefined paths.
+3. **Edge-case and race hunt (from the code, not only the spec):** read each changed function and ask what breaks it. Go through the categories in the *Edge cases* table of `docs/specs/_templates/requirements.md` (empty/null, boundaries, text/Unicode, numbers/money, time zones/DST, duplicates/order, external failures, permissions/state, repeats/concurrency).
+   - For every read-then-write on shared state (DB row, counter, file, cache, external side effect), describe the interleaving of two requests that breaks the invariant. A `find` followed by `save`, an `if (exists)` followed by `insert`, or a non-idempotent retry is a finding unless an atomic mechanism (conditional update, constraint, version, lock, idempotency key) protects it.
+   - Check that every invariant in design.md has a test that really runs requests in parallel against the real datastore, and that it would fail without the mechanism.
+   - List cases the code handles but no test covers, and cases neither covers.
+4. **Contracts:** public API/data model match design.md exactly (names, types, status codes, errors).
+5. **Security:** input validation, injection, authZ, secrets, and logging of sensitive data.
+6. **Rules:** violations of `.claude/rules/*` and `docs/constitution.md`, especially weakened checks or scope creep (changes no task asked for).
+7. **Tests quality:** assertions that check behaviour (not implementation), determinism, and meaningful names.
 
 Report (most severe first, max ~15 findings):
 ```
 VERDICT: APPROVE | CHANGES REQUESTED
 [BLOCKER|MAJOR|MINOR] path:line — problem — concrete failure scenario — suggested fix
 Missing coverage: REQ-… (no test) | none
+Unspecified edge cases: <case> → proposed REQ (EARS) | none
+Race risks: <state> — <interleaving> — <mechanism missing> | none
 ```
 
 Rules: read-only. Bash only for `git diff/log/show` and read-only inspection. Every finding needs a concrete scenario; no style nitpicks the formatter would handle.

@@ -19,13 +19,15 @@ Feature idea: **$ARGUMENTS**
    - User stories, each with EARS criteria and IDs `REQ-<story>.<n>`. Cover the happy path, every error/unwanted case, and boundaries.
    - Measurable NFRs only.
    - Non-goals: at least one, to fence the scope.
+   - **Edge cases:** go through every category of the *Edge cases* table (run the `/edge-cases` method on the stories). Each relevant case becomes an EARS REQ (usually `IF … THEN`); each irrelevant category gets `N/A: <reason>`. For *Repeats and concurrency*, name the invariant and what the losing request gets.
    - Anything you're unsure about goes in *Open questions*. Don't guess.
 5. **Self-check** before showing it:
    - Each criterion is testable by an automated test, with a single behaviour per line.
    - No solution details have leaked in (endpoints, classes, libraries).
-   - Every edge case listed has a matching REQ.
+   - Every row of the *Edge cases* table has REQ IDs or an N/A reason. No empty cells.
 6. Add the spec to the index in `docs/specs/README.md` with status `draft`.
-7. **STOP.** Show a short summary (stories, REQ count, open questions) and ask:
+7. **STOP.** Show a short summary (stories, REQ count, open questions, and the edge cases covered, one line per category) and ask:
+   > **Which edge cases did I miss?** Think of your domain: odd data you have seen in production, time zones, money, two users at once. Add them under *Added by the human at review* (I turn them into REQs).
    > Review `docs/specs/NNN-slug/requirements.md`. Reply **GO** to approve, or tell me what to change. Next step after GO: `/spec-design` (best in a fresh session).
 
 Don't write design or code in this phase.

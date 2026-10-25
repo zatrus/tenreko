@@ -16,6 +16,7 @@
 8. **Security by default.** Least privilege, parameterised queries, dependency updates, no secrets in the repo.
 9. **Reproducible builds.** Pinned toolchain and lockfiles. One gate command (`scripts/check.sh`) behaves the same locally and in CI.
 10. **Small increments.** Each task is one reviewable commit that leaves the gate green.
+11. **Invariants live in the datastore.** A rule about shared state ("stock is never negative", "paid at most once") is enforced atomically where the data lives: a conditional update, a constraint, a version check, or a lock. Never "check in code, then write". Every such invariant has a test that runs requests in parallel against the real datastore.
 
 ## Project-specific additions
 

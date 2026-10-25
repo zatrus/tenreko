@@ -31,4 +31,6 @@ paths:
 ## Tests (Vitest)
 - Co-locate tests as `*.test.ts` next to the source, or in `test/` for integration.
 - Use `vi.useFakeTimers()` and injected clocks; never sleep.
+- Property-based: `fast-check` (`fc.assert(fc.property(...))`) via `@fast-check/vitest` `test.prop`. Add with `npm install -D fast-check @fast-check/vitest` when the first edge-case REQ needs it.
+- Concurrency: `Promise.all` of N calls against the real DB adapter (Testcontainers), then assert the invariant. Node is single-threaded, but every `await` between a read and a write is a race window.
 - HTTP adapters: test with the framework's in-process injector (e.g. `app.inject`, `supertest`), not a real port.

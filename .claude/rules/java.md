@@ -31,3 +31,5 @@ paths:
 - Run one test: `./gradlew test --tests "com.acme.XTest.method"` (or `integrationTest --tests …`).
 - Use AssertJ (`assertThat(...)`), `@ParameterizedTest` for case tables, and `@DisplayName` or method names that read as behaviour.
 - Mockito only for collaborators you own and only at boundaries. No `PowerMock`, no mocking of value objects.
+- Property-based: jqwik (`@Property` + `@ForAll`), added to the version catalog when the first edge-case REQ needs it. Check its JUnit Platform version matches the one in use before adding it.
+- Concurrency: `Executors.newVirtualThreadPerTaskExecutor()` + `CountDownLatch` start gate, `Future.get` with a timeout, then assert the invariant. Pattern: `.claude/skills/edge-cases/references/concurrency.md`.

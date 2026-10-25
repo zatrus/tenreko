@@ -16,6 +16,7 @@ claude
 
 # 3. build features the spec-driven way
 > /spec-new Users can reset their password via an emailed link
+> /edge-cases      # optional: any time, on a spec, a file, or the diff
 > /spec-design      # after you reply GO
 > /spec-tasks       # after GO
 > /spec-implement all
@@ -41,6 +42,7 @@ AGENTS.md                     same rules for other vendors' agents (Codex/Gemini
   skills/
     project-init/             /project-init + verified scaffolds in assets/<stack>/
     spec-new/ spec-design/ spec-tasks/ spec-implement/ spec-verify/
+    edge-cases/               /edge-cases checklist + verified concurrency patterns (references/concurrency.md)
     bugfix/ adr/ wrap-up/ karpathy-guidelines/
   hooks/
     session-start.sh          branch, dirty files, open inbox items → context

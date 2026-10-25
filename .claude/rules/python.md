@@ -29,3 +29,5 @@ paths:
 - `tests/unit/…` and `tests/integration/…`, mirroring the package. Files `test_*.py`, functions `test_<behaviour>`.
 - Use fixtures over setup methods, `pytest.mark.parametrize` for tables of cases, `tmp_path` for files, and `freezegun` or an injected clock for time.
 - `pytest.raises(SpecificError, match=...)`. Never assert on a broad `Exception`.
+- Property-based: `hypothesis` (`@given(st.text())`), added with `uv add --dev hypothesis` when the first edge-case REQ needs it. Use `@example(...)` to keep a found counterexample.
+- Concurrency: `ThreadPoolExecutor` + `threading.Barrier` (sync) or `asyncio.gather` (async) against the real DB (Testcontainers), then assert the invariant.

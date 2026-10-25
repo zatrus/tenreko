@@ -21,6 +21,8 @@ Spec: **$ARGUMENTS** (if empty, use the active spec named in `docs/state/NOW.md`
    - Reuse existing patterns found in step 1. Cite real paths; mark new files *(new)*.
    - Define **contracts first** (API, function signatures, events, schema), precisely enough that tests can be written from them.
    - **Error handling table:** every unwanted-behaviour REQ (`IF … THEN`) appears in it.
+   - **Concurrency and consistency table:** list all shared mutable state the design touches. Every invariant gets an atomic mechanism (constitution article 11), the loser's result, and a named concurrency test. "Check, then write" in application code is never a mechanism. If nothing is shared, write `None: <why>`.
+   - **Edge-case REQs** each map to a test in the test strategy. Use property-based tests for input-shaped categories (text, numbers, boundaries, time) and parallel tests on the real datastore for invariants.
    - **Test strategy table:** every REQ and NFR maps to a test level and a test name.
    - **Constitution check:** go through every article. Exceptions need a justification.
    - Pick the simplest design that meets the REQs. Don't add extension points nobody asked for.

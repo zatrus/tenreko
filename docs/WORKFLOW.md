@@ -55,6 +55,9 @@ Run each phase in a **fresh session**. The files carry the state, and the contex
 | **EARS** acceptance criteria with stable IDs | Kiro / requirements engineering (Mavin's EARS) | `requirements.md` template, `specs.md` rule |
 | **Traceability** REQ → task → test, checked before merge | Classic V-model, made cheap by agents | `tasks.md` table, `/spec-verify` |
 | **Open questions block approval**: ask, don't guess | Spec Kit `[NEEDS CLARIFICATION]` | requirements template |
+| **Edge-case checklist** in every spec: each category is a REQ or "N/A: reason"; the human adds cases at the GO; a reviewer who did not write the code hunts for missed cases in the code | Boundary-value analysis / equivalence partitioning; "what did I miss?" review | requirements template, `/edge-cases`, `reviewer` |
+| **Invariants enforced in the datastore** (conditional update, constraint, version, lock, idempotency key), each proven by a parallel test on the real DB that fails against the naive version | Constitution article 11; classic lost-update / double-spend bugs | design template *Concurrency and consistency*, `references/concurrency.md` |
+| **Property-based tests** for input-shaped logic | QuickCheck family (fast-check, Hypothesis, jqwik) | `testing.md`, stack rules |
 | **Test-first** for features, reproduce-first for bugs | TDD | `testing.md`, `implementer`, `/bugfix` |
 | **One deterministic gate** (`scripts/check.sh`), same in CI | "Make the right thing the easy thing" | `scripts/check.sh`, `ci.yml` |
 | **Hooks enforce; rules advise**: format on edit, block secrets/lockfiles/force-push/`--no-verify` | Claude Code best practice: deterministic over probabilistic | `.claude/hooks/`, `settings.json` |

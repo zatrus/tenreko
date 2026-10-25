@@ -17,7 +17,7 @@ Spec: **$ARGUMENTS** (default: active spec).
    `| REQ-1.1 | T1 | OrderServiceTest.should_reject_expired | ✅ passing |`
    Any REQ without a test → status ❌. That's a blocker: add a task, and go back to `/spec-implement`.
    NFRs that can't be tested automatically get a recorded manual check with evidence (command and output).
-4. **Independent review:** run the `reviewer` agent on `git diff main...HEAD` with the spec folder. It hasn't seen this conversation, which is the point.
+4. **Independent review:** run the `reviewer` agent on `git diff main...HEAD` with the spec folder. It hasn't seen this conversation, which is the point. Its edge-case and race hunt (step 3 of its checklist) reads the **code**, not only the spec, so it finds cases the spec missed. Each finding there that the human accepts becomes a new REQ (spec change with GO) plus a test task.
    - Optional, for risky changes: also ask a different vendor's tool (Codex or Gemini, which read `AGENTS.md`) or a separate Claude session for a second review.
    - For auth, crypto, uploads, or external input: also run `/security-review`.
 5. **Triage findings:** fix BLOCKER and MAJOR (each as a small task plus commit, with gate green). For each MINOR, fix it or note why not. Never dismiss a finding without a reason.

@@ -50,6 +50,8 @@ testing {
                 implementation(project())
                 implementation(libs.spring.boot.starter.webmvc.test)
                 implementation(libs.spring.boot.starter.actuator.test)
+                // Persistence (see .claude/skills/edge-cases/references/concurrency.md for the Testcontainers setup):
+                // implementation(libs.spring.boot.starter.data.jpa.test)
                 // implementation(libs.spring.boot.testcontainers)
                 // implementation(libs.testcontainers.junit.jupiter)
                 // implementation(libs.testcontainers.postgresql)

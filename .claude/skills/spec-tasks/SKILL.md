@@ -22,7 +22,8 @@ Spec: **$ARGUMENTS** (default: the active spec in `docs/state/NOW.md`).
    - lists `Covers: REQ-…`, the **test to write first**, the files to change, and the verify step
    - marks `[P]` only when it shares no files with other open tasks
 5. **Coverage check:** fill the *Traceability* table skeleton. Every REQ and NFR appears in at least one task. If a REQ has no task, add one or ask.
-6. Include tasks for: migrations (if any), config/env docs (`.env.example`), README/API docs updates, and observability (logs/metrics) when the design calls for them.
-7. Update `docs/state/NOW.md` (phase: tasks).
-8. **STOP.** Show the task list (titles and REQ refs only), then ask:
+6. **Edge cases and races get their own tasks** when they are more than one extra assertion: a property-based test task for input-heavy logic, and one task per invariant in *Concurrency and consistency* (the parallel test first, expect red against a naive implementation, then the atomic mechanism).
+7. Include tasks for: migrations (if any), config/env docs (`.env.example`), README/API docs updates, and observability (logs/metrics) when the design calls for them.
+8. Update `docs/state/NOW.md` (phase: tasks).
+9. **STOP.** Show the task list (titles and REQ refs only), then ask:
    > Reply **GO** to approve. Next: `/spec-implement` (runs tasks one by one), or `/spec-implement T3` for one task.

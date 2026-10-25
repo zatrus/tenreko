@@ -31,6 +31,7 @@ paths:
 ## Persistence
 - **Flyway** migrations in `src/main/resources/db/migration`, `V<N>__description.sql`. Never edit a migration that has run anywhere; add a new one. `spring.jpa.hibernate.ddl-auto=validate`.
 - `@Transactional` on service methods, not on controllers or repositories. Read-only methods: `@Transactional(readOnly = true)`.
+- **`@Transactional` does not prevent races.** Under READ COMMITTED, two transactions can both read stock 1 and both write 0. Protect invariants with a conditional `@Modifying @Query("update … where … and stock >= :n")` that returns the row count, `@Version` optimistic locking (map `ObjectOptimisticLockingFailureException` to 409), `@Lock(PESSIMISTIC_WRITE)`, or a unique constraint (map `DataIntegrityViolationException` to 409). Pattern and test: `.claude/skills/edge-cases/references/concurrency.md`.
 - Watch for N+1 queries: use fetch joins or entity graphs, and assert query counts in integration tests for list endpoints.
 - Disable open-in-view: `spring.jpa.open-in-view=false`.
 

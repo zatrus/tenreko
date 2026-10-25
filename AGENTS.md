@@ -19,5 +19,7 @@ Review `git diff main...HEAD` against the spec. Report findings as:
 VERDICT: APPROVE | CHANGES REQUESTED
 [BLOCKER|MAJOR|MINOR] path:line — problem — concrete failure scenario — suggested fix
 Missing coverage: REQ-… without a test | none
+Unspecified edge cases: <case> → proposed REQ (EARS) | none
+Race risks: <state> — <interleaving> — <mechanism missing> | none
 ```
-Focus: spec conformance (every REQ implemented and tested), correctness, contracts vs. design.md, security, and scope creep. Skip style issues (formatters handle those). Don't modify files during a review.
+Focus: spec conformance (every REQ implemented and tested), correctness, edge cases the spec missed (the categories in `docs/specs/_templates/requirements.md`), races on shared state (every read-then-write needs an atomic mechanism and a parallel test, see constitution article 11), contracts vs. design.md, security, and scope creep. Skip style issues (formatters handle those). Don't modify files during a review.
