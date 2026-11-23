@@ -15,3 +15,7 @@ Thumbs.db
 *.iml
 
 # Stack-specific entries are appended by /project-init
+
+# Build output from running the project-init templates
+.claude/skills/project-init/assets/*/.gradle/
+.claude/skills/project-init/assets/*/bin/
